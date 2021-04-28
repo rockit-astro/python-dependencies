@@ -9,7 +9,6 @@ RPMBUILD = rpmbuild --define "_topdir %(pwd)/build/../build/../build/../build/" 
 # Generate spec files for new packages using:
 # py2pack generate -t fedora.spec <package name> <package version>
 # then rename and modify spec file to use match the others in the repository
-prereq: serpent numpy pybind11
 web: flask werkzeug click jinja2 markupsafe requests idna certifi github-flask pyparsing bibtexparser biplist pymysql chardet urllib3 itsdangerous
 general: astropy astroquery astroplan scipy jsonschema keyring skyfield sgp4 jplephem sep pyds9 pyro4 photutils pillow pyephem pyserial six strict-rfc3339 sysv_ipc demjson mpmath sympy sip_tpv pytesseract pcomfortcloud libusb1
 
@@ -34,6 +33,12 @@ astroplan:
 pybind11:
 	mkdir -p build
 	${RPMBUILD} -ba python3-pybind11.spec
+	mv build/x86_64/*.rpm .
+	rm -rf build
+
+cython:
+	mkdir -p build
+	${RPMBUILD} -ba python3-Cython.spec
 	mv build/x86_64/*.rpm .
 	rm -rf build
 

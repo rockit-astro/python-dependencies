@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           python3-numpy
-Version:        1.16.1
+Version:        1.19.5
 Release:        0
 License:        BSD (FIXME:No SPDX)
 Summary:        NumPy is the fundamental package for array computing with Python
@@ -12,6 +12,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  unzip
 BuildRequires:  atlas-devel
+BuildRequires:  blas-devel
 BuildRequires:  lapack-devel
 BuildRequires:  gcc-gfortran
 BuildRequires:  libquadmath
@@ -28,6 +29,9 @@ BuildRequires:  libquadmath
 
 %install
 %{__python3} setup.py install --prefix=%{_prefix} --root=%{buildroot}
+
+rm -rf %{buildroot}%{python_sitearch}/numpy/{core,distutils,f2py,fft,ma,matrixlib,oldnumeric,polynomial,random,testing}/tests
+rm -rf %{buildroot}%{python_sitearch}/numpy/doc
 
 %files
 %defattr(-,root,root,-)
