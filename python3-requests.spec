@@ -1,5 +1,5 @@
 Name:           python3-requests
-Version:        2.22.0
+Version:        2.25.1
 Release:        1
 Url:            http://python-requests.org
 Summary:        Python HTTP for Humans.

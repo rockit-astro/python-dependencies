@@ -1,5 +1,5 @@
 Name:           python3-six
-Version:        1.12.0
+Version:        1.15.0
 Release:        0
 Url:            https://github.com/benjaminp/six
 Summary:        Python 2 and 3 compatibility utilities

@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           python3-pillow
-Version:        5.4.1
+Version:        8.2.0
 Release:        0
 Url:            http://python-pillow.org
 Summary:        Python Imaging Library (Fork)

@@ -1,5 +1,5 @@
 Name:           python3-idna
-Version:        2.8
+Version:        3.1
 Release:        0
 Url:            https://github.com/kjd/idna
 Summary:        Internationalized Domain Names in Applications (IDNA)

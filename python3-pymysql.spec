@@ -1,5 +1,5 @@
 Name:           python3-pymysql
-Version:        0.9.3
+Version:        1.0.2
 Release:        0
 Url:            https://github.com/PyMySQL/PyMySQL/
 Summary:        Pure Python MySQL Driver

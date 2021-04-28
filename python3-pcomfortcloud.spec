@@ -1,5 +1,5 @@
 Name:           python3-pcomfortcloud
-Version:        0.0.17
+Version:        0.0.20
 Release:        0
 Url:            http://github.com/lostfields/python-panasonic-comfort-cloud
 Summary:        Read and change status of Panasonic Comfort Cloud devices

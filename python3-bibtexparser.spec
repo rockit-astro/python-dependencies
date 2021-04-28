@@ -1,5 +1,5 @@
 Name:           python3-bibtexparser
-Version:        1.1.0
+Version:        1.2.0
 Release:        0
 Url:            https://github.com/sciunto-org/python-bibtexparser
 Summary:        Bibtex parser for python 2.7 and 3.3 and newer

@@ -1,5 +1,5 @@
 Name:           python3-pyserial
-Version:        3.4
+Version:        3.5
 Release:        0
 License:        BSD (FIXME:No SPDX)
 Summary:        Python Serial Port Extension
@@ -34,7 +34,8 @@ Latest:
 
 %files
 %defattr(0755,root,root,-)
-%{_bindir}/miniterm.py
+%{_bindir}/pyserial-miniterm
+%{_bindir}/pyserial-ports
 %defattr(-,root,root,-)
 %{python3_sitelib}/*
 

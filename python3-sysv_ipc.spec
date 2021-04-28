@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           python3-sysv_ipc
-Version:        1.0.0
+Version:        1.1.0
 Release:        0
 License:        http://creativecommons.org/licenses/BSD/
 Summary:        System V IPC primitives (semaphores, shared memory and message queues) for Python

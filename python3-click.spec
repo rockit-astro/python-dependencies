@@ -1,11 +1,11 @@
 Name:           python3-click
-Version:        7.0
+Version:        7.1.2
 Release:        0
 Url:            https://palletsprojects.com/p/click/
 Summary:        Composable command line interface toolkit
 License:        BSD (FIXME:No SPDX)
 Group:          Development/Languages/Python
-Source:         https://files.pythonhosted.org/packages/source/c/click/Click-%{version}.tar.gz
+Source:         https://files.pythonhosted.org/packages/source/c/click/click-%{version}.tar.gz
 BuildRequires:  python3-devel
 BuildArch:      noarch
 
@@ -103,7 +103,7 @@ Links
 *   Test coverage: https://codecov.io/gh/pallets/click
 
 %prep
-%setup -q -n Click-%{version}
+%setup -q -n click-%{version}
 
 %build
 %{__python3} setup.py build

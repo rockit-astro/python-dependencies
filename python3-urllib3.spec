@@ -1,5 +1,5 @@
 Name:           python3-urllib3
-Version:        1.25.7
+Version:        1.26.4
 Release:        0
 Url:            https://urllib3.readthedocs.io/
 Summary:        HTTP library with thread-safe connection pooling, file post, and more.

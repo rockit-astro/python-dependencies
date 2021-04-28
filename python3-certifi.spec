@@ -1,5 +1,5 @@
 Name:           python3-certifi
-Version:        2020.6.20
+Version:        2020.12.5
 Release:        0
 Url:            https://certifi.io/
 Summary:        Python package for providing Mozilla's CA Bundle.

@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           python3-sep
-Version:        1.0.3
+Version:        1.1.1
 Release:        0
 License:        LGPL-3.0+
 Summary:        Astronomical source extraction and photometry library

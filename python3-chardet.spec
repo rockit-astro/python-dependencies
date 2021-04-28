@@ -1,5 +1,5 @@
 Name:           python3-chardet
-Version:        3.0.4
+Version:        4.0.0
 Release:        1
 Url:            https://github.com/chardet/chardet
 Summary:        Universal encoding detector for Python 2 and 3
