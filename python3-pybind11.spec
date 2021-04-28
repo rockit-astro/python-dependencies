@@ -1,13 +1,13 @@
 %define debug_package %{nil}
 
 Name:           python3-pybind11
-Version:        2.4.3
+Version:        2.6.2
 Release:        0
 Url:            https://github.com/pybind/pybind11
 Summary:        Seamless operability between C++11 and Python
 License:        BSD (FIXME:No SPDX)
 Group:          Development/Languages/Python
-Source:         https://files.pythonhosted.org/packages/source/p/pybind11/pybind11-%{version}.tar.gz
+Source:         https://pypi.python.org/packages/source/p/pybind11/pybind11-%{version}.tar.gz
 BuildRequires:  python3-devel
 
 %description
@@ -50,6 +50,6 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{python3_sitelib}/*
-%{_includedir}/python3.6m/pybind11/*
+%{_bindir}/pybind11-config
 
 %changelog

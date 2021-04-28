@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           python3-scipy
-Version:        1.4.1
+Version:        1.5.4
 Release:        0
 Url:            https://www.scipy.org
 Summary:        SciPy: Scientific Library for Python
