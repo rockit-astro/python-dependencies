@@ -32,12 +32,18 @@ jobs:
           make cython
           rpm -i python3-Cython-*.rpm
 
-      - name: Package and install numpy, serpent, pybind11
+      - name: Package astropy dependencies
         run: |
-          make numpy serpent pybind11
+          make numpy serpent pybind11 markupsafe 
           rpm -i python3-numpy-*.rpm
           rpm -i python3-serpent-*.rpm
           rpm -i python3-pybind11-*.rpm
+          make markupsafe
+          rpm -i python3-markupsafe-*.rpm
+          make jinja2
+          rpm -i python3-jinja2-*.rpm
+          make extension-helpers
+          rpm -i python3-extension-helpers-*.rpm
 
       - name: Package RPMs
         run:
