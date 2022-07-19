@@ -9,42 +9,12 @@ RPMBUILD = rpmbuild --define "_topdir %(pwd)/build/../build/../build/../build/" 
 # Generate spec files for new packages using:
 # py2pack generate -t fedora.spec <package name> <package version>
 # then rename and modify spec file to use match the others in the repository
-web: flask werkzeug click jinja2 markupsafe requests idna certifi github-flask pyparsing bibtexparser biplist pymysql chardet urllib3 itsdangerous
-general: astropy astroquery scipy inotify jsonschema keyring skyfield sgp4 jplephem sep pyds9 pyro4 photutils pillow pyserial six strict-rfc3339 sysv_ipc demjson mpmath sympy sip_tpv pcomfortcloud libusb1 extension-helpers
-
-numpy:
-	mkdir -p build
-	${RPMBUILD} -ba python3-numpy.spec
-	mv build/x86_64/*.rpm .
-	rm -rf build
-
-extension-helpers:
-	mkdir -p build
-	${RPMBUILD} -ba python3-extension-helpers.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
+web: flask werkzeug jinja2 github-flask bibtexparser biplist itsdangerous
+general: astropy astroquery keyring skyfield sgp4 jplephem sep pyds9 pyro4 photutils strict-rfc3339 demjson mpmath sympy sip_tpv pcomfortcloud libusb1
 
 astropy:
 	mkdir -p build
 	${RPMBUILD} -ba python3-astropy.spec
-	mv build/x86_64/*.rpm .
-	rm -rf build
-
-pybind11:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pybind11.spec
-	mv build/x86_64/*.rpm .
-	rm -rf build
-
-cython:
-	mkdir -p build
-	${RPMBUILD} -ba python3-Cython.spec
-	mv build/x86_64/*.rpm .
-	rm -rf build
-
-scipy:
-	mkdir -p build
-	${RPMBUILD} -ba python3-scipy.spec
 	mv build/x86_64/*.rpm .
 	rm -rf build
 
@@ -114,30 +84,6 @@ keyring:
 	mv build/noarch/*.rpm .
 	rm -rf build
 
-inotify:
-	mkdir -p build
-	${RPMBUILD} -ba python3-inotify.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-jsonschema:
-	mkdir -p build
-	${RPMBUILD} -ba python3-jsonschema.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-click:
-	mkdir -p build
-	${RPMBUILD} -ba python3-click.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-pyparsing:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pyparsing.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
 bibtexparser:
 	mkdir -p build
 	${RPMBUILD} -ba python3-bibtexparser.spec
@@ -156,24 +102,6 @@ photutils:
 	mv build/x86_64/*.rpm .
 	rm -rf build
 
-pyserial:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pyserial.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-six:
-	mkdir -p build
-	${RPMBUILD} -ba python3-six.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-sysv_ipc:
-	mkdir -p build
-	${RPMBUILD} -ba python3-sysv_ipc.spec
-	mv build/x86_64/*.rpm .
-	rm -rf build
-
 flask:
 	mkdir -p build
 	${RPMBUILD} -ba python3-flask.spec
@@ -183,30 +111,6 @@ flask:
 jinja2:
 	mkdir -p build
 	${RPMBUILD} -ba python3-jinja2.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-markupsafe:
-	mkdir -p build
-	${RPMBUILD} -ba python3-markupsafe.spec
-	mv build/x86_64/*.rpm .
-	rm -rf build
-
-requests:
-	mkdir -p build
-	${RPMBUILD} -ba python3-requests.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-idna:
-	mkdir -p build
-	${RPMBUILD} -ba python3-idna.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-certifi:
-	mkdir -p build
-	${RPMBUILD} -ba python3-certifi.spec
 	mv build/noarch/*.rpm .
 	rm -rf build
 
@@ -240,33 +144,9 @@ sip_tpv:
 	mv build/noarch/*.rpm .
 	rm -rf build
 
-pymysql:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pymysql.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-pillow:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pillow.spec
-	mv build/x86_64/*.rpm .
-	rm -rf build
-
-chardet:
-	mkdir -p build
-	${RPMBUILD} -ba python3-chardet.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
 itsdangerous:
 	mkdir -p build
 	${RPMBUILD} -ba python3-itsdangerous.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-urllib3:
-	mkdir -p build
-	${RPMBUILD} -ba python3-urllib3.spec
 	mv build/noarch/*.rpm .
 	rm -rf build
 
