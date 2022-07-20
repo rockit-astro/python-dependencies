@@ -1,14 +1,14 @@
 %define debug_package %{nil}
 
 Name:           python3-sep
-Version:        1.1.1
+Version:        1.2.1
 Release:        0
 License:        LGPL-3.0+
 Summary:        Astronomical source extraction and photometry library
 Url:            https://github.com/kbarbary/sep
 Group:          Development/Languages/Python
 Source:         https://files.pythonhosted.org/packages/source/s/sep/sep-%{version}.tar.gz
-BuildRequires:  python36-devel
+BuildRequires:  python3-Cython, python3-devel
 BuildArch:      x86_64
 
 %description
