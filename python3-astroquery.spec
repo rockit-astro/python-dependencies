@@ -1,5 +1,5 @@
 Name:           python3-astroquery
-Version:        0.4.1
+Version:        0.4.6
 Release:        0
 Url:            http://astropy.org/astroquery
 Summary:        Functions and classes to access online astronomical data resources
