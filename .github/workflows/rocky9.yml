@@ -29,7 +29,9 @@ jobs:
           path: rocky-packages
 
       - name: Package RPMs
-        run:
+        run: |
+          make astropy-deps
+          rpm -i python3-pyerfa-*.rpm
           make general web
 
       - name: Push Packages
