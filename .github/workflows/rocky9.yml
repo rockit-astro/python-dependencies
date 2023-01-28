@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - rocky
+      - aarch64
 
 jobs:
   linux:
-    name: RPM Packaging
+    name: RPM Packaging (x86_64 + noarch)
     runs-on: ubuntu-22.04
     container: rockylinux:9
     steps:
@@ -21,6 +22,12 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v2
 
+      - name: Package RPMs
+        run: |
+          make astropy-deps
+          rpm -i python3-pyerfa-*.rpm
+          make general web
+
       - name: Clone Package Repository
         uses: actions/checkout@v2
         with:
@@ -28,14 +35,48 @@ jobs:
           token: ${{ secrets.DEPLOY_TOKEN }}
           path: rocky-packages
 
-      - name: Package RPMs
-        run: |
-          make astropy-deps
-          rpm -i python3-pyerfa-*.rpm
-          make general web
-
       - name: Push Packages
         env:
           RPM_SIGNING_KEY: ${{ secrets.RPM_SIGNING_KEY }}
         run: |
           rocky-packages/sign-and-push-packages.sh *.rpm
+
+  linux-arm64:
+    runs-on: ubuntu-20.04
+    name: RPM Packaging (aarch64)
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2.1.0
+      - name: Build aarch64 rpms
+        uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: none
+          distro: none
+          base_image: arm64v8/rockylinux:9
+          shell: /bin/bash
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
+          run: |
+            cat /etc/redhat-release
+            dnf -y install 'dnf-command(config-manager)'
+            dnf -y config-manager --set-enabled crb
+            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+            dnf -y install gcc git libXt-devel make python3-Cython python3-devel python3-extension-helpers python3-numpy python3-packaging python3-pip python3-pyparsing python3-pyyaml python3-rpm-macros rpm-build rpm-sign
+            make astropy-deps
+            rpm -i python3-pyerfa-*.rpm
+            make aarch64
+            mv *.rpm /artifacts
+
+      - name: Clone Package Repository
+        uses: actions/checkout@v2
+        with:
+          repository: warwick-one-metre/rocky-packages
+          token: ${{ secrets.DEPLOY_TOKEN }}
+          path: rocky-packages
+      - name: Push Packages
+        env:
+          RPM_SIGNING_KEY: ${{ secrets.RPM_SIGNING_KEY }}
+        run: |
+          rocky-packages/sign-and-push-packages.sh artifacts/*.rpm

@@ -9,7 +9,7 @@ Url:            https://github.com/kbarbary/sep
 Group:          Development/Languages/Python
 Source:         https://files.pythonhosted.org/packages/source/s/sep/sep-%{version}.tar.gz
 BuildRequires:  python3-Cython, python3-devel
-BuildArch:      x86_64
+BuildArch:      x86_64 aarch64
 
 %description
 http://sep.readthedocs.org

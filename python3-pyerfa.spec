@@ -7,7 +7,7 @@ License:        BSD (FIXME:No SPDX)
 Group:          Development/Languages/Python
 Requires:       python3-numpy
 BuildRequires:  python3-rpm-macros
-BuildArch:      x86_64
+BuildArch:      x86_64 aarch64
 
 %description
 

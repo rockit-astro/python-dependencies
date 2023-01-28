@@ -7,7 +7,7 @@ Summary:        Pure-python wrapper for libusb-1.0
 License:        LGPL-2.1+
 URL:            http://github.com/vpelletier/python-libusb1
 Source:         https://files.pythonhosted.org/packages/source/l/libusb1/libusb1-%{version}.tar.gz
-
+BuildArch:      x86_64 aarch64
 
 %description
 

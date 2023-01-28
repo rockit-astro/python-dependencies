@@ -9,6 +9,7 @@ License:        BSD 3-Clause License (FIXME:No SPDX)
 Group:          Development/Languages/Python
 Source:         https://files.pythonhosted.org/packages/source/p/photutils/photutils-%{version}.tar.gz
 BuildRequires:  python3-devel
+BuildArch:      x86_64 aarch64
 
 %description
 

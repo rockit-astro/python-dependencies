@@ -9,7 +9,7 @@ License:        MIT
 Group:          Development/Languages/Python
 Source:         https://files.pythonhosted.org/packages/source/s/sgp4/sgp4-%{version}.tar.gz
 BuildRequires:  python3-setuptools
-BuildArch:      x86_64
+BuildArch:      x86_64 aarch64
 
 %description
 

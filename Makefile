@@ -12,24 +12,25 @@ RPMBUILD = rpmbuild --define "_topdir %(pwd)/build/../build/../build/../build/" 
 web: flask werkzeug jinja2 github-flask bibtexparser biplist itsdangerous
 general: astropy astroquery keyring skyfield sgp4 jplephem sep pyds9 serpent pyro4 photutils strict-rfc3339 demjson mpmath sympy sip_tpv pcomfortcloud libusb1
 astropy-deps: pyerfa
+aarch64: astropy pyds9 sep sgp4 photutils libusb1
 
 astropy:
 	mkdir -p build
 	${RPMBUILD} -ba python3-astropy.spec
-	mv build/x86_64/*.rpm .
+	mv build/*/*.rpm .
 	rm -rf build
 
 pyerfa:
 	mkdir -p build
 	${RPMBUILD} -ba python3-pyerfa.spec
-	mv build/x86_64/*.rpm .
+	mv build/*/*.rpm .
 	rm -rf build
 
 pyds9:
 	mkdir -p build
 	${RPMBUILD} -ba python3-pyds9.spec
-	mv build/x86_64/*.rpm .
-	rm -rf x86_64
+	mv build/*/*.rpm .
+	rm -rf build
 
 serpent:
 	mkdir -p build
@@ -46,7 +47,7 @@ pyro4:
 sep:
 	mkdir -p build
 	${RPMBUILD} -ba python3-sep.spec
-	mv build/x86_64/*.rpm .
+	mv build/*/*.rpm .
 	rm -rf build
 
 demjson:
@@ -70,7 +71,7 @@ skyfield:
 sgp4:
 	mkdir -p build
 	${RPMBUILD} -ba python3-sgp4.spec
-	mv build/x86_64/*.rpm .
+	mv build/*/*.rpm .
 	rm -rf build
 
 jplephem:
@@ -106,7 +107,7 @@ biplist:
 photutils:
 	mkdir -p build
 	${RPMBUILD} -ba python3-photutils.spec
-	mv build/x86_64/*.rpm .
+	mv build/*/*.rpm .
 	rm -rf build
 
 flask:
@@ -166,5 +167,5 @@ pcomfortcloud:
 libusb1:
 	mkdir -p build
 	${RPMBUILD} -ba python3-libusb1.spec
-	mv build/x86_64/*.rpm .
+	mv build/*/*.rpm .
 	rm -rf build

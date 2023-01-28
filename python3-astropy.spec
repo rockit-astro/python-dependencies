@@ -7,7 +7,7 @@ License:        BSD (FIXME:No SPDX)
 Group:          Development/Languages/Python
 BuildRequires:  python3-pip python3-numpy python3-pyparsing python3-pyyaml python3-packaging
 Requires:       python3-numpy python3-pyparsing python3-pyyaml python3-pyerfa python3-packaging
-BuildArch:      x86_64
+BuildArch:      x86_64 aarch64
 
 %description
 Astropy is a package intended to contain core functionality and some
