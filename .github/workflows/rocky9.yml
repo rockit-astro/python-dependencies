@@ -3,8 +3,7 @@ name: Rocky 9 Packaging
 on:
   push:
     branches:
-      - rocky
-      - aarch64
+      - master
 
 jobs:
   linux:
