@@ -30,15 +30,15 @@ jobs:
       - name: Clone Package Repository
         uses: actions/checkout@v2
         with:
-          repository: warwick-one-metre/rocky-packages
+          repository: rockit-astro/packages
           token: ${{ secrets.DEPLOY_TOKEN }}
-          path: rocky-packages
+          path: packages
 
       - name: Push Packages
         env:
           RPM_SIGNING_KEY: ${{ secrets.RPM_SIGNING_KEY }}
         run: |
-          rocky-packages/sign-and-push-packages.sh *.rpm
+          packages/sign-and-push-packages.sh *.rpm
 
   linux-arm64:
     runs-on: ubuntu-20.04
@@ -71,11 +71,11 @@ jobs:
       - name: Clone Package Repository
         uses: actions/checkout@v2
         with:
-          repository: warwick-one-metre/rocky-packages
+          repository: rockit-astro/packages
           token: ${{ secrets.DEPLOY_TOKEN }}
-          path: rocky-packages
+          path: packages
       - name: Push Packages
         env:
           RPM_SIGNING_KEY: ${{ secrets.RPM_SIGNING_KEY }}
         run: |
-          rocky-packages/sign-and-push-packages.sh artifacts/*.rpm
+          packages/sign-and-push-packages.sh artifacts/*.rpm
