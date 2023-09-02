@@ -9,10 +9,10 @@ RPMBUILD = rpmbuild --define "_topdir %(pwd)/build/../build/../build/../build/" 
 # Generate spec files for new packages using:
 # py2pack generate -t fedora.spec <package name> <package version>
 # then rename and modify spec file to use match the others in the repository
-web: flask werkzeug jinja2 github-flask bibtexparser biplist itsdangerous
+web: flask werkzeug jinja2 markupsafe github-flask bibtexparser biplist itsdangerous
 general: astropy astroquery keyring skyfield sgp4 jplephem sep pyds9 serpent pyro4 photutils strict-rfc3339 demjson mpmath sympy sip_tpv pcomfortcloud libusb1
 astropy-deps: pyerfa
-aarch64: astropy pyds9 sep sgp4 photutils libusb1
+aarch64: astropy pyds9 sep sgp4 photutils libusb1 markupsafe
 
 astropy:
 	mkdir -p build
@@ -120,6 +120,12 @@ jinja2:
 	mkdir -p build
 	${RPMBUILD} -ba python3-jinja2.spec
 	mv build/noarch/*.rpm .
+	rm -rf build
+
+markupsafe:
+	mkdir -p build
+	${RPMBUILD} -ba python3-markupsafe.spec
+	mv build/*/*.rpm .
 	rm -rf build
 
 werkzeug:
