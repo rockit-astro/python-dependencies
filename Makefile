@@ -12,7 +12,7 @@ RPMBUILD = rpmbuild --define "_topdir %(pwd)/build/../build/../build/../build/" 
 web: flask werkzeug jinja2 markupsafe github-flask bibtexparser biplist itsdangerous
 general: astropy astroquery keyring skyfield sgp4 jplephem sep pyds9 serpent pyro4 photutils strict-rfc3339 demjson mpmath sympy sip_tpv pcomfortcloud libusb1
 astropy-deps: pyerfa
-aarch64: astropy pyds9 sep sgp4 photutils libusb1 markupsafe
+aarch64: astropy pyds9 sep sgp4 photutils libusb1 markupsafe rpigpio
 
 astropy:
 	mkdir -p build
@@ -173,5 +173,11 @@ pcomfortcloud:
 libusb1:
 	mkdir -p build
 	${RPMBUILD} -ba python3-libusb1.spec
+	mv build/*/*.rpm .
+	rm -rf build
+
+rpigpio:
+	mkdir -p build
+	${RPMBUILD} -ba python3-rpi.gpio.spec
 	mv build/*/*.rpm .
 	rm -rf build
