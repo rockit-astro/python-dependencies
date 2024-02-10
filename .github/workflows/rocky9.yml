@@ -14,12 +14,12 @@ jobs:
       - name: Install Dependencies
         run: |
           cat /etc/redhat-release
-          dnf -y install 'dnf-command(config-manager)'
-          dnf -y config-manager --set-enabled crb
-          dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
-          dnf -y install gcc git libXt-devel make python3-Cython python3-devel python3-extension-helpers python3-numpy python3-packaging python3-pip python3-pyparsing python3-pyyaml python3-rpm-macros rpm-build rpm-sign 
+          yum -y install epel-release
+          /usr/bin/crb enable
+          yum -y install gcc gcc-c++ git libXt-devel make python3-Cython python3-devel python3-extension-helpers python3-numpy python3-packaging python3-pip python3-pyparsing python3-pyyaml python3-rpm-macros rpm-build rpm-sign 
+
       - name: Clone Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Package RPMs
         run: |
@@ -28,7 +28,7 @@ jobs:
           make general web
 
       - name: Clone Package Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: rockit-astro/packages
           token: ${{ secrets.DEPLOY_TOKEN }}
@@ -45,7 +45,8 @@ jobs:
     name: RPM Packaging (aarch64)
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v2.1.0
+        uses: actions/checkout@v4
+
       - name: Build aarch64 rpms
         uses: uraimo/run-on-arch-action@v2
         with:
@@ -59,17 +60,16 @@ jobs:
             --volume "${PWD}/artifacts:/artifacts"
           run: |
             cat /etc/redhat-release
-            dnf -y install 'dnf-command(config-manager)'
-            dnf -y config-manager --set-enabled crb
-            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
-            dnf -y install gcc git libXt-devel make python3-Cython python3-devel python3-extension-helpers python3-numpy python3-packaging python3-pip python3-pyparsing python3-pyyaml python3-rpm-macros rpm-build rpm-sign
+            yum -y install epel-release
+            /usr/bin/crb enable
+            yum -y install gcc gcc-c++ git libXt-devel make python3-Cython python3-devel python3-extension-helpers python3-numpy python3-packaging python3-pip python3-pyparsing python3-pyyaml python3-rpm-macros rpm-build rpm-sign
             make astropy-deps
             rpm -i python3-pyerfa-*.rpm
             make aarch64
             mv *.rpm /artifacts
 
       - name: Clone Package Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: rockit-astro/packages
           token: ${{ secrets.DEPLOY_TOKEN }}
