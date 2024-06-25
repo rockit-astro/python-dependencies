@@ -1,5 +1,5 @@
 Name:           python3-skyfield
-Version:        1.43.1
+Version:        1.49
 Release:        0
 Url:            http://github.com/brandon-rhodes/python-skyfield/
 Summary:        Elegant astronomy for Python
