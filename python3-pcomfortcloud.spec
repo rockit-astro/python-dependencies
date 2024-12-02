@@ -1,11 +1,12 @@
 Name:           python3-pcomfortcloud
-Version:        0.0.25
+Version:        0.1.2
 Release:        0
 Url:            http://github.com/lostfields/python-panasonic-comfort-cloud
 Summary:        Read and change status of Panasonic Comfort Cloud devices
 License:        MIT
 Group:          Development/Languages/Python
 Source:         https://files.pythonhosted.org/packages/source/p/pcomfortcloud/pcomfortcloud-%{version}.tar.gz
+Requires:       python3-beautifulsoup4
 BuildRequires:  python3-devel
 BuildArch:      noarch
 
