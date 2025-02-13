@@ -1,5 +1,5 @@
 Name:           python3-astropy
-Version:        5.1
+Version:        5.2.2
 Release:        0
 Url:            http://astropy.org
 Summary:        Community-developed python astronomy tools
