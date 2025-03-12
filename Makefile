@@ -10,9 +10,9 @@ RPMBUILD = rpmbuild --define "_topdir %(pwd)/build/../build/../build/../build/" 
 # py2pack generate -t fedora.spec <package name> <package version>
 # then rename and modify spec file to use match the others in the repository
 web: flask werkzeug jinja2 markupsafe github-flask bibtexparser biplist itsdangerous
-general: astropy astroquery keyring skyfield sgp4 jplephem sep pyds9 serpent pyro4 photutils strict-rfc3339 demjson mpmath sympy sip_tpv pcomfortcloud libusb1
+general: astropy astroquery keyring skyfield sgp4 jplephem sep pyds9 serpent pyro4 photutils strict-rfc3339 demjson mpmath sympy sip_tpv pcomfortcloud libusb1 pandas
 astropy-deps: pyerfa
-aarch64: astropy pyds9 sep sgp4 photutils libusb1 markupsafe rpigpio
+aarch64: astropy pyds9 sep sgp4 photutils libusb1 markupsafe rpigpio pandas
 
 astropy:
 	mkdir -p build
@@ -181,3 +181,10 @@ rpigpio:
 	${RPMBUILD} -ba python3-rpi.gpio.spec
 	mv build/*/*.rpm .
 	rm -rf build
+
+pandas:
+	mkdir -p build
+	${RPMBUILD} -ba python3-pandas.spec
+	mv build/*/*.rpm .
+	rm -rf build
+
