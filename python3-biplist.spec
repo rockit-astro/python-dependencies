@@ -1,37 +1,18 @@
 Name:           python3-biplist
 Version:        1.0.3
-Release:        0
+Release:        1%{dist}
 Url:            https://bitbucket.org/wooster/biplist
 Summary:        biplist is a library for reading/writing binary plists.
 License:        BSD (FIXME:No SPDX)
 Group:          Development/Languages/Python
-Source:         https://files.pythonhosted.org/packages/source/b/biplist/biplist-%{version}.tar.gz
-BuildRequires:  python3-devel
 BuildArch:      noarch
 
 %description
-`biplist` is a binary plist parser/generator for Python.
-
-Binary Property List (plist) files provide a faster and smaller serialization
-format for property lists on OS X. This is a library for generating binary
-plists which can be read by OS X, iOS, or other clients.
-
-This module requires Python 2.6 or higher or Python 3.4 or higher.
-
-%prep
-%setup -q -n biplist-%{version}
-
-%build
-%{__python3} setup.py build
 
 %install
-%{__python3} setup.py install --prefix=%{_prefix} --root=%{buildroot}
-
-%clean
-rm -rf %{buildroot}
+%{__python3} -m pip install biplist==%{version} --prefix=%{buildroot}/usr --no-input --no-deps --ignore-installed
+echo rpm | tee %{buildroot}/usr/lib*/*/site-packages/*.dist-info/INSTALLER
 
 %files
 %defattr(-,root,root,-)
 %{python3_sitelib}/*
-
-%changelog

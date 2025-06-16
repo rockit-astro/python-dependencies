@@ -1,27 +1,21 @@
 Name:           python3-astropy
-Version:        5.2.2
-Release:        0
+Version:        7.1.0
+Release:        1%{dist}
 Url:            http://astropy.org
 Summary:        Community-developed python astronomy tools
 License:        BSD (FIXME:No SPDX)
 Group:          Development/Languages/Python
-BuildRequires:  python3-pip python3-numpy python3-pyparsing python3-pyyaml python3-packaging
-Requires:       python3-numpy python3-pyparsing python3-pyyaml python3-pyerfa python3-packaging
+# generated from https://pypi.org/pypi/astropy/7.1.0/json
+Requires:       python3-numpy python3-pyerfa python3-astropy-iers-data python3-PyYAML python3-packaging python3-scipy
 BuildArch:      x86_64 aarch64
 
 %description
-Astropy is a package intended to contain core functionality and some
-common tools needed for performing astronomy and astrophysics research with
-Python. It also provides an index for other astronomy packages and tools for
-managing them.
-
 
 %install
-pip3 install astropy==%{version} --prefix=%{buildroot}/usr --no-input
+%{__python3} -m pip install astropy==%{version} --prefix=%{buildroot}/usr --no-input --no-deps --ignore-installed
+echo rpm | tee %{buildroot}/usr/lib*/*/site-packages/*.dist-info/INSTALLER
 
 %files
 %defattr(-,root,root,-)
 %{python3_sitearch}/*
 %{_bindir}/*
-
-%changelog

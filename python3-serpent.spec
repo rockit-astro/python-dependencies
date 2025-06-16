@@ -1,26 +1,16 @@
 Name:           python3-serpent
 Version:        1.41
-Release:        0
+Release:        1%{dist}
 Summary:        Serialization based on ast.literal_eval
 License:        MIT
 Group:          Development/Languages/Python
-Source:         https://files.pythonhosted.org/packages/source/s/serpent/serpent-%{version}.tar.gz
-BuildRequires:  python3-devel
 BuildArch:      noarch
-
 %description
 
-%prep
-%setup -q -n serpent-%{version}
-
-%build
-%{__python3} setup.py build
-
 %install
-%{__python3} setup.py install --prefix=%{_prefix} --root=%{buildroot}
+%{__python3} -m pip install serpent==%{version} --prefix=%{buildroot}/usr --no-input --no-deps --ignore-installed
+echo rpm | tee %{buildroot}/usr/lib*/*/site-packages/*.dist-info/INSTALLER
 
 %files
 %defattr(-,root,root,-)
 %{python3_sitelib}/*
-
-%changelog

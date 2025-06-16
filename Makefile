@@ -1,184 +1,29 @@
-# HACK: Expand the _topdir path to work around "Dest dir longer than base dir is not supported" errors from rpmbuild
-RPMBUILD = rpmbuild --define "_topdir %(pwd)/build/../build/../build/../build/" \
-        --define "_builddir %{_topdir}" \
-        --define "_rpmdir %{_topdir}" \
-        --define "_srcrpmdir %{_topdir}" \
-        --define "_sourcedir %(pwd)" \
-        --undefine=_disable_source_fetch
+# List the packages that should be built under each recipe
+x86_64 = astropy pyerfa sep sgp4 photutils
+noarch = flask github-flask bibtexparser biplist libusb1 astropy-iers-data skyfield sgp4 jplephem sep serpent Pyro4 photutils mpmath sympy sip_tpv pcomfortcloud
+aarch64 = astropy pyerfa sep sgp4 photutils rpi.gpio
 
-# Generate spec files for new packages using:
-# py2pack generate -t fedora.spec <package name> <package version>
-# then rename and modify spec file to use match the others in the repository
-web: flask werkzeug jinja2 markupsafe github-flask bibtexparser biplist itsdangerous
-general: astropy astroquery keyring skyfield sgp4 jplephem sep pyds9 serpent pyro4 photutils strict-rfc3339 mpmath sympy sip_tpv pcomfortcloud libusb1 pandas
-astropy-deps: pyerfa
-aarch64: astropy pyds9 sep sgp4 photutils libusb1 markupsafe rpigpio pandas
+# Generate recipes for each of the listed packages
+all = $(x86_64) $(noarch) $(aarch64)
 
-astropy:
-	mkdir -p build
-	${RPMBUILD} -ba python3-astropy.spec
-	mv build/*/*.rpm .
-	rm -rf build
+all: $(all)
+noarch: $(noarch)
+x86_64: $(x86_64)
+aarch64: $(aarch64)
 
-pyerfa:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pyerfa.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
-pyds9:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pyds9.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
-serpent:
-	mkdir -p build
-	${RPMBUILD} -ba python3-serpent.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-pyro4:
-	mkdir -p build
-	${RPMBUILD} -ba python3-Pyro4.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-sep:
-	mkdir -p build
-	${RPMBUILD} -ba python3-sep.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
-strict-rfc3339:
-	mkdir -p build
-	${RPMBUILD} -ba python3-strict-rfc3339.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-skyfield:
-	mkdir -p build
-	${RPMBUILD} -ba python3-skyfield.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-sgp4:
-	mkdir -p build
-	${RPMBUILD} -ba python3-sgp4.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
-jplephem:
-	mkdir -p build
-	${RPMBUILD} -ba python3-jplephem.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-astroquery:
-	mkdir -p build
-	${RPMBUILD} -ba python3-astroquery.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-keyring:
-	mkdir -p build
-	${RPMBUILD} -ba python3-keyring.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-bibtexparser:
-	mkdir -p build
-	${RPMBUILD} -ba python3-bibtexparser.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-biplist:
-	mkdir -p build
-	${RPMBUILD} -ba python3-biplist.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-photutils:
-	mkdir -p build
-	${RPMBUILD} -ba python3-photutils.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
-flask:
-	mkdir -p build
-	${RPMBUILD} -ba python3-flask.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-jinja2:
-	mkdir -p build
-	${RPMBUILD} -ba python3-jinja2.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-markupsafe:
-	mkdir -p build
-	${RPMBUILD} -ba python3-markupsafe.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
-werkzeug:
-	mkdir -p build
-	${RPMBUILD} -ba python3-werkzeug.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-github-flask:
-	mkdir -p build
-	${RPMBUILD} -ba python3-github-flask.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-mpmath:
-	mkdir -p build
-	${RPMBUILD} -ba python3-mpmath.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-sympy:
-	mkdir -p build
-	${RPMBUILD} -ba python3-sympy.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-sip_tpv:
-	mkdir -p build
-	${RPMBUILD} -ba python3-sip_tpv.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-itsdangerous:
-	mkdir -p build
-	${RPMBUILD} -ba python3-itsdangerous.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-pcomfortcloud:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pcomfortcloud.spec
-	mv build/noarch/*.rpm .
-	rm -rf build
-
-libusb1:
-	mkdir -p build
-	${RPMBUILD} -ba python3-libusb1.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
-rpigpio:
-	mkdir -p build
-	${RPMBUILD} -ba python3-rpi.gpio.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
-pandas:
-	mkdir -p build
-	${RPMBUILD} -ba python3-pandas.spec
-	mv build/*/*.rpm .
-	rm -rf build
-
+define GENERATE_RECIPE
+ifndef $(1)_DEFINED
+$(1)_DEFINED = 1
+$(1):
+	@mkdir -p build
+	rpmbuild --define "_topdir %(pwd)/build/" \
+         --define "_builddir %{_topdir}" \
+         --define "_rpmdir %{_topdir}" \
+         --define "_srcrpmdir %{_topdir}" \
+         --define "_sourcedir %{_topdir}" \
+         -ba python3-$(1).spec
+	@mv build/*/*.rpm .
+	@rm -rf build
+endif
+endef
+$(foreach package,$(all),$(eval $(call GENERATE_RECIPE,$(package))))

@@ -1,42 +1,19 @@
 Name:           python3-github-flask
 Version:        3.2.0
-Release:        0
+Release:        1%{dist}
 Url:            http://github.com/cenkalti/github-flask
 Summary:        GitHub extension for Flask microframework
 License:        MIT
 Group:          Development/Languages/Python
-Source:         https://files.pythonhosted.org/packages/source/G/GitHub-Flask/GitHub-Flask-%{version}.tar.gz
-BuildRequires:  python3-devel
 Requires:       python3-flask, python3-requests
 BuildArch:      noarch
 
 %description
-GitHub-Flask
-------------
-
-Adds support to authorize users with GitHub and make API requests with Flask.
-
-Links
-`````
-
-* `documentation <http://github-flask.readthedocs.org>`_
-* `development version
-  <http://github.com/cenkalti/github-flask/zipball/master#egg=GitHub-Flask-dev>`_
-
-%prep
-%setup -q -n GitHub-Flask-%{version}
-
-%build
-%{__python3} setup.py build
 
 %install
-%{__python3} setup.py install --prefix=%{_prefix} --root=%{buildroot}
-
-%clean
-rm -rf %{buildroot}
+%{__python3} -m pip install github-flask==%{version} --prefix=%{buildroot}/usr --no-input --no-deps --ignore-installed
+echo rpm | tee %{buildroot}/usr/lib*/*/site-packages/*.dist-info/INSTALLER
 
 %files
 %defattr(-,root,root,-)
 %{python3_sitelib}/*
-
-%changelog

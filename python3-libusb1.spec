@@ -1,31 +1,16 @@
-%define debug_package %{nil}
-
 Name:           python3-libusb1
-Version:        3.0.0
-Release:        0
+Version:        3.3.1
+Release:        1%{dist}
 Summary:        Pure-python wrapper for libusb-1.0
 License:        LGPL-2.1+
 URL:            http://github.com/vpelletier/python-libusb1
-Source:         https://files.pythonhosted.org/packages/source/l/libusb1/libusb1-%{version}.tar.gz
-BuildArch:      x86_64 aarch64
-
+BuildArch:      noarch
 %description
 
-
-%prep
-%setup -q -n libusb1-%{version}
-
-%build
-%{__python3} setup.py build
-
 %install
-%{__python3} setup.py install --prefix=%{_prefix} --root=%{buildroot}
-
-%clean
-rm -rf %{buildroot}
+%{__python3} -m pip install libusb1==%{version} --prefix=%{buildroot}/usr --no-input --no-deps --ignore-installed
+echo rpm | tee %{buildroot}/usr/lib*/*/site-packages/*.dist-info/INSTALLER
 
 %files
 %defattr(-,root,root,-)
 %{python3_sitelib}/*
-
-%changelog
