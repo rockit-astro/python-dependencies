@@ -1,6 +1,6 @@
 # List the packages that should be built under each recipe
 x86_64 = astropy pyerfa sep sgp4 sysv_ipc photutils
-noarch = flask github-flask bibtexparser biplist libusb1 astropy-iers-data skyfield sgp4 jplephem sep serpent Pyro4 photutils mpmath sympy scp sip_tpv pcomfortcloud
+noarch = flask github-flask keyring bibtexparser biplist libusb1 astropy-iers-data astroquery pyvo secretstorage jeepney skyfield sgp4 jplephem sep serpent Pyro4 photutils mpmath sympy scp sip_tpv pcomfortcloud
 aarch64 = astropy pyerfa sep sgp4 sysv_ipc photutils rpi.gpio
 
 # Generate recipes for each of the listed packages
